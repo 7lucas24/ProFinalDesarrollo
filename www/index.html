@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="styles.css">
+    <title>Automax</title>
+</head>
+<body>
+    <div id="header-container"></div>
+    <header>
+        <nav>
+            <ul class="nav-menu">
+                <li class="title">Automax</li>
+                <li><a href="/">Home</a></li>
+                <li><a href="contacto.html">Contacto</a></li>
+                <li><a href="acerca.html">Acerca de</a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <h1>Bienvenido a AutoRent</h1>
+        <p>Los mejores vehículos para ti.</p>
+
+        <h2>Vehículos disponibles:</h2>
+        <div class="carousel-css">
+            <div class="carousel-slide">
+                <img src="images/corolla.jpeg" alt="Toyota Corolla">
+                <h3>Toyota Corolla</h3>
+                <a href="vehiculo1.html" class="carousel-btn">Ver más</a>
+            </div>
+            <div class="carousel-slide">
+                <img src="images/civic.jpeg" alt="Honda Civic">
+                <h3>Honda Civic</h3>
+                <a href="vehiculo2.html" class="carousel-btn">Ver más</a>
+            </div>
+            <div class="carousel-slide">
+                <img src="images/fiesta.jpg" alt="Ford Fiesta">
+                <h3>Ford Fiesta</h3>
+                <a href="vehiculo3.html" class="carousel-btn">Ver más</a>
+            </div>
+        </div>
+    </main>
+    <script>
+        fetch('header.html')
+            .then(res => res.text())
+            .then(data => {
+                document.getElementById('header-container').innerHTML = data;
+            });
+
+        // Carrusel JS
+        const slides = document.querySelectorAll('.carousel-slide');
+        let currentSlide = 0;
+
+        function showSlide(index) {
+            slides.forEach((slide, i) => {
+                slide.classList.toggle('active', i === index);
+            });
+        }
+
+        // Avance automático cada 3 segundos
+        setInterval(() => {
+            currentSlide = (currentSlide + 1) % slides.length;
+            showSlide(currentSlide);
+        }, 3000);
+
+        // Botones anterior y siguiente
+        document.getElementById('prevBtn').addEventListener('click', () => {
+            currentSlide = (currentSlide - 1 + slides.length) % slides.length;
+            showSlide(currentSlide);
+        });
+
+        document.getElementById('nextBtn').addEventListener('click', () => {
+            currentSlide = (currentSlide + 1) % slides.length;
+            showSlide(currentSlide);
+        });
+    </script>
+</body>
+</html>

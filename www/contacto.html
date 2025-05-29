@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Acerca de</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div id="header-container"></div>
+    </script>
+    <h1>Contacto</h1>
+    <p>Dirección: Calle Ejemplo 123, Ciudad</p>
+    <p>Teléfono: 555-123-4567</p>
+    <p>Email: contacto@autorent.com</p>
+    <script>
+        fetch('header.html')
+            .then(res => res.text())
+            .then(data => {
+                document.getElementById('header-container').innerHTML = data;
+            });
+    </script>
+
+</body>
+</html>
